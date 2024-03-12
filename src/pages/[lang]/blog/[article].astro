@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+export const getStaticPaths = (async () => {
+  const articles = await getCollection("blog");
+  return articles.map((article) => ({
+    params: { lang: article.data.lang, article: article.data.pathname },
+    props: { article },
+  }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const { article } = Astro.props;
+const { title, date, description } = article.data;
+const { Content } = await article.render();
+---
+
+<BaseLayout lang={lang}>
+  <h1>{title}</h1>
+  <h2>{description} | {date}</h2>
+  <Content />
+</BaseLayout>

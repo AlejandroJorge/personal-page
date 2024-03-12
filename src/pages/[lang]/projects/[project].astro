@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+export const getStaticPaths = (async () => {
+  const projectsCollection = await getCollection("projects");
+  return projectsCollection.map((project) => ({
+    params: { lang: project.data.lang, project: project.data.pathname },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const { project } = Astro.props;
+const { title, description, repository, demo } = project.data;
+---
+
+<BaseLayout lang={lang}>
+  <h1>{title}</h1>
+  <h2>{description}</h2>
+  <a href={repository} target="_blank">Github Repository</a>
+  <a href={demo} target="_blank">Usable demo</a>
+</BaseLayout>

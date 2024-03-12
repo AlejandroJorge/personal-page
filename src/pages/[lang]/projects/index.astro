@@ -3,6 +3,7 @@ import { allowedLanguages } from "@/config";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { translate, type TextContent } from "@lib/internationalization";
 import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
 export const getStaticPaths = (() => {
   return allowedLanguages.map((lang) => ({
     params: { lang },
@@ -15,8 +16,22 @@ const title: TextContent = {
 };
 
 const { lang } = Astro.params;
+
+const projects = await getCollection(
+  "projects",
+  (project) => project.data.lang === lang,
+);
 ---
 
 <BaseLayout lang={lang}>
   <h1>{translate(title, lang)}</h1>
+  <ul>
+    {
+      projects.map((project) => (
+        <li>
+          <a href={project.data.pathname}>{project.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
 </BaseLayout>
