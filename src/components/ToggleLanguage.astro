@@ -1,0 +1,18 @@
+---
+import { allowedLanguages } from "@/config";
+import { removeFirstPathSegment } from "@lib/pathing";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const currentPathWithoutLang = removeFirstPathSegment(Astro.url.pathname);
+---
+
+<p>Current path: {currentPathWithoutLang}</p>
+<ul>
+  {
+    allowedLanguages.map((lang) => (
+      <li>
+        <a href={getRelativeLocaleUrl(lang, currentPathWithoutLang)}>{lang}</a>
+      </li>
+    ))
+  }
+</ul>

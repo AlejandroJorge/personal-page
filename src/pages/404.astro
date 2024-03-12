@@ -1,0 +1,16 @@
+---
+import { defaultLanguage } from "@/config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { translate, type TextContent } from "@lib/internationalization";
+
+const missingContentMessage: TextContent = {
+  es: "No se encontró el contenido",
+  en: "Content not found",
+};
+
+const lang = defaultLanguage;
+---
+
+<BaseLayout lang={lang}>
+  <h1>{translate(missingContentMessage, lang)}</h1>
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+import { allowedLanguages } from "@/config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { translate, type TextContent } from "@lib/internationalization";
+import type { GetStaticPaths } from "astro";
+export const getStaticPaths = (() => {
+  return allowedLanguages.map((lang) => ({
+    params: { lang },
+  }));
+}) satisfies GetStaticPaths;
+
+const title: TextContent = {
+  es: "Acerca de mí...",
+  en: "About me...",
+};
+
+const { lang } = Astro.params;
+---
+
+<BaseLayout lang={lang}>
+  <h1>{translate(title, lang)}</h1>
+</BaseLayout>

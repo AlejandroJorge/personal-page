@@ -1,0 +1,35 @@
+---
+import type { AllowedLanguage } from "@/config";
+import { translate, type TextContent } from "@lib/internationalization";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+interface Route {
+  pathWithoutLang: string;
+  name: TextContent;
+}
+const routes: Route[] = [
+  { pathWithoutLang: "/", name: { en: "Home", es: "Titulo" } },
+  { pathWithoutLang: "/about", name: { en: "About", es: "Acerca de" } },
+  { pathWithoutLang: "/blog", name: { en: "Blog", es: "Blog" } },
+  { pathWithoutLang: "/projects", name: { en: "Projects", es: "Proyectos" } },
+];
+
+interface Props {
+  lang: AllowedLanguage;
+}
+const { lang } = Astro.props;
+---
+
+<nav>
+  <ul>
+    {
+      routes.map((route) => (
+        <li>
+          <a href={getRelativeLocaleUrl(lang, route.pathWithoutLang)}>
+            {translate(route.name, lang)}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

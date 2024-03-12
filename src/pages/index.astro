@@ -1,0 +1,19 @@
+---
+Astro.redirect(getRelativeLocaleUrl(defaultLanguage, "/"));
+
+import { defaultLanguage } from "@/config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { translate, type TextContent } from "@lib/internationalization";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const title: TextContent = {
+  es: "Página de inicio",
+  en: "Index page",
+};
+
+const lang = defaultLanguage;
+---
+
+<BaseLayout lang={lang}>
+  <h1>{translate(title, lang)}</h1>
+</BaseLayout>
