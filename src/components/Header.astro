@@ -1,6 +1,6 @@
 ---
 import type { AllowedLanguage } from "@/config/language";
-import { getCSSVars } from "@/config/theme";
+import { getCSSVars, type LightningMode } from "@/config/theme";
 import NavBar from "@components/NavBar.astro";
 import ToggleLanguage from "@components/ToggleLanguage.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
@@ -8,8 +8,9 @@ import "primeicons/primeicons.css";
 
 interface Props {
   lang: AllowedLanguage;
+  mode: LightningMode;
 }
-const { lang } = Astro.props;
+const { lang, mode } = Astro.props;
 
 const socials: { icon: string; href: string }[] = [
   {
@@ -28,9 +29,9 @@ const socials: { icon: string; href: string }[] = [
     <h2>Alejandro.<span>Dev</span></h2>
   </a>
 
-  <NavBar lang={lang} />
+  <NavBar lang={lang} mode={mode} />
 
-  <ToggleLanguage lang={lang} />
+  <ToggleLanguage lang={lang} mode={mode} />
 
   <ul>
     {
@@ -45,7 +46,7 @@ const socials: { icon: string; href: string }[] = [
   </ul>
 </header>
 
-<style define:vars={getCSSVars("dark")}>
+<style define:vars={getCSSVars(mode)}>
   a {
     text-decoration: none;
     color: var(--textColor);

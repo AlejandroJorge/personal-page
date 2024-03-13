@@ -1,5 +1,6 @@
 ---
 import type { AllowedLanguage } from "@/config/language";
+import { getCSSVars, type LightningMode } from "@/config/theme";
 import { translate, type TextContent } from "@lib/internationalization";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -15,8 +16,9 @@ const routes: Route[] = [
 
 interface Props {
   lang: AllowedLanguage;
+  mode: LightningMode;
 }
-const { lang } = Astro.props;
+const { lang, mode } = Astro.props;
 ---
 
 <nav>
@@ -33,12 +35,33 @@ const { lang } = Astro.props;
   </ul>
 </nav>
 
-<style>
+<style define:vars={getCSSVars(mode)}>
   a {
     text-decoration: none;
-    color: white;
+    color: var(--textColor);
     font-weight: 600;
     font-size: 1.15rem;
+    transition: 0.3s;
+  }
+
+  a:hover {
+    color: var(--primaryColor);
+  }
+
+  a::after {
+    content: "";
+    display: block;
+    height: 0.15rem;
+    background-color: var(--textColor);
+    margin-top: 0.1rem;
+    position: relative;
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  a:hover::after {
+    opacity: 1;
+    background-color: var(--primaryColor);
   }
 
   ul {

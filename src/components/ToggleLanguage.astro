@@ -1,6 +1,6 @@
 ---
 import { AllowedLanguage, allowedLanguages } from "@/config/language";
-import { getCSSVars } from "@/config/theme";
+import { getCSSVars, type LightningMode } from "@/config/theme";
 import { removeFirstPathSegment } from "@lib/pathing";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -8,8 +8,9 @@ const currentPathWithoutLang = removeFirstPathSegment(Astro.url.pathname);
 
 interface Props {
   lang: AllowedLanguage;
+  mode: LightningMode;
 }
-const { lang: currentLang } = Astro.props;
+const { lang: currentLang, mode } = Astro.props;
 ---
 
 <ul>
@@ -22,7 +23,7 @@ const { lang: currentLang } = Astro.props;
   }
 </ul>
 
-<style define:vars={getCSSVars("dark")}>
+<style define:vars={getCSSVars(mode)}>
   ul {
     list-style: none;
     display: flex;

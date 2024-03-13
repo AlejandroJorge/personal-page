@@ -1,12 +1,23 @@
+---
+import type { AllowedLanguage } from "@/config/language";
+import { getCSSVars, type LightningMode } from "@/config/theme";
+
+interface Props {
+  lang: AllowedLanguage;
+  mode: LightningMode;
+}
+const { lang, mode } = Astro.props;
+---
+
 <main transition:animate="slide">
   <slot />
 </main>
 
-<style>
+<style define:vars={getCSSVars(mode)}>
   main {
     margin-right: 15rem;
     margin-left: 15rem;
     margin-top: 5rem;
-    background-color: lightgray;
+    background-color: var(--foregroundColor);
   }
 </style>

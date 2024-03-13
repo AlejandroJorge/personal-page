@@ -30,7 +30,7 @@ const theme: ITheme = {
       secondary: "#6c757d",
       background: "#f8f9fa",
       foreground: "#333333",
-      strongerBackground: "#e0e1e2",
+      strongerBackground: "#b0c4de",
     },
   },
 };
@@ -44,3 +44,6 @@ export function getCSSVars(mode: "light" | "dark") {
   }
   return cssVars;
 }
+
+export type LightningMode = "light" | "dark";
+export const defaultLightningMode: LightningMode = "dark";

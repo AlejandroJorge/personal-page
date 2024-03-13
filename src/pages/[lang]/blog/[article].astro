@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import ContentContainer from "@components/ContentContainer.astro";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
+import { defaultLightningMode } from "@/config/theme";
 export const getStaticPaths = (async () => {
   const articles = await getCollection("blog");
   return articles.map((article) => ({
@@ -15,10 +16,11 @@ const { lang } = Astro.params;
 const { article } = Astro.props;
 const { title, date, description } = article.data;
 const { Content } = await article.render();
+const mode = defaultLightningMode;
 ---
 
-<BaseLayout lang={lang}>
-  <ContentContainer>
+<BaseLayout lang={lang} mode={mode}>
+  <ContentContainer lang={lang} mode={mode}>
     <h1>{title}</h1>
     <h2>{description} | {date}</h2>
     <Content />

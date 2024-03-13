@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import ContentContainer from "@components/ContentContainer.astro";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
+import { defaultLightningMode } from "@/config/theme";
 export const getStaticPaths = (async () => {
   const projectsCollection = await getCollection("projects");
   return projectsCollection.map((project) => ({
@@ -15,10 +16,11 @@ const { lang } = Astro.params;
 const { project } = Astro.props;
 const { title, description, repository, demo } = project.data;
 const { Content } = await project.render();
+const mode = defaultLightningMode;
 ---
 
-<BaseLayout lang={lang}>
-  <ContentContainer>
+<BaseLayout lang={lang} mode={mode}>
+  <ContentContainer lang={lang} mode={mode}>
     <h1>{title}</h1>
     <h2>{description}</h2>
     <a href={repository} target="_blank">Github Repository</a>

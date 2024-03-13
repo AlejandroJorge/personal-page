@@ -4,6 +4,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import ContentContainer from "@components/ContentContainer.astro";
 import { translate, type TextContent } from "@lib/internationalization";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { defaultLightningMode } from "@/config/theme";
 
 Astro.redirect(getRelativeLocaleUrl(defaultLanguage, "404"));
 
@@ -13,10 +14,11 @@ const missingContentMessage: TextContent = {
 };
 
 const lang = defaultLanguage;
+const mode = defaultLightningMode;
 ---
 
-<BaseLayout lang={lang}>
-  <ContentContainer>
+<BaseLayout lang={lang} mode={mode}>
+  <ContentContainer lang={lang} mode={mode}>
     <h1>{translate(missingContentMessage, lang)}</h1>
   </ContentContainer>
 </BaseLayout>
