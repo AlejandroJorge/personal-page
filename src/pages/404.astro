@@ -2,6 +2,9 @@
 import { defaultLanguage } from "@/config";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { translate, type TextContent } from "@lib/internationalization";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+Astro.redirect(getRelativeLocaleUrl(defaultLanguage, "404"));
 
 const missingContentMessage: TextContent = {
   es: "No se encontró el contenido",
