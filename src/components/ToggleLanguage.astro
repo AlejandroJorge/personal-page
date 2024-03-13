@@ -1,5 +1,6 @@
 ---
 import { AllowedLanguage, allowedLanguages } from "@/config/language";
+import { getCSSVars } from "@/config/theme";
 import { removeFirstPathSegment } from "@lib/pathing";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -21,7 +22,7 @@ const { lang: currentLang } = Astro.props;
   }
 </ul>
 
-<style>
+<style define:vars={getCSSVars("dark")}>
   ul {
     list-style: none;
     display: flex;
@@ -29,9 +30,9 @@ const { lang: currentLang } = Astro.props;
   }
 
   li {
-    border-left: 0.15rem solid #000;
-    border-top: 0.15rem solid #000;
-    border-bottom: 0.15rem solid #000;
+    border-left: 0.15rem solid var(--textColor);
+    border-top: 0.15rem solid var(--textColor);
+    border-bottom: 0.15rem solid var(--textColor);
     text-align: center;
     min-width: 3.5rem;
     min-height: 2.5rem;
@@ -43,18 +44,18 @@ const { lang: currentLang } = Astro.props;
   }
 
   li:last-of-type {
-    border-right: 0.15rem solid #000;
+    border-right: 0.15rem solid var(--textColor);
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
   }
 
   .selected {
-    background-color: darkred;
+    background-color: var(--primaryColor);
   }
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: var(--textColor);
     flex: 1;
     display: flex;
     justify-content: center;

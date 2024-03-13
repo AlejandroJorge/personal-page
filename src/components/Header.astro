@@ -1,5 +1,6 @@
 ---
 import type { AllowedLanguage } from "@/config/language";
+import { getCSSVars } from "@/config/theme";
 import NavBar from "@components/NavBar.astro";
 import ToggleLanguage from "@components/ToggleLanguage.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
@@ -24,7 +25,7 @@ const socials: { icon: string; href: string }[] = [
 
 <header>
   <a href={getRelativeLocaleUrl(lang, "/")}>
-    <h2>Alejandro <span>Dev</span></h2>
+    <h2>Alejandro.<span>Dev</span></h2>
   </a>
 
   <NavBar lang={lang} />
@@ -44,10 +45,14 @@ const socials: { icon: string; href: string }[] = [
   </ul>
 </header>
 
-<style>
+<style define:vars={getCSSVars("dark")}>
   a {
     text-decoration: none;
-    color: inherit;
+    color: var(--textColor);
+  }
+
+  span {
+    color: var(--primaryColor);
   }
 
   header {
@@ -55,15 +60,29 @@ const socials: { icon: string; href: string }[] = [
     grid-template-columns: 2fr 5fr 1fr 1fr;
     justify-content: space-between;
     align-items: center;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-    min-height: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    min-height: 5rem;
+    border-bottom: 0.25rem solid var(--primaryColor);
   }
 
   ul {
     list-style: none;
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: right;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  i {
+    color: var(--textColor);
+    font-size: 1.5rem;
+    margin-top: 0.1rem;
   }
 </style>
