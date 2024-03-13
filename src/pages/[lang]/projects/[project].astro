@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentContainer from "@components/ContentContainer.astro";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 export const getStaticPaths = (async () => {
@@ -17,9 +18,11 @@ const { Content } = await project.render();
 ---
 
 <BaseLayout lang={lang}>
-  <h1>{title}</h1>
-  <h2>{description}</h2>
-  <a href={repository} target="_blank">Github Repository</a>
-  <a href={demo} target="_blank">Usable demo</a>
-  <Content />
+  <ContentContainer>
+    <h1>{title}</h1>
+    <h2>{description}</h2>
+    <a href={repository} target="_blank">Github Repository</a>
+    <a href={demo} target="_blank">Usable demo</a>
+    <Content />
+  </ContentContainer>
 </BaseLayout>

@@ -1,0 +1,69 @@
+---
+import type { AllowedLanguage } from "@/config/language";
+import NavBar from "@components/NavBar.astro";
+import ToggleLanguage from "@components/ToggleLanguage.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import "primeicons/primeicons.css";
+
+interface Props {
+  lang: AllowedLanguage;
+}
+const { lang } = Astro.props;
+
+const socials: { icon: string; href: string }[] = [
+  {
+    icon: "pi pi-github",
+    href: "https://github.com/AlejandroJorge",
+  },
+  {
+    icon: "pi pi-linkedin",
+    href: "https://www.linkedin.com/in/jorgealejandroc/",
+  },
+];
+---
+
+<header>
+  <a href={getRelativeLocaleUrl(lang, "/")}>
+    <h2>Alejandro <span>Dev</span></h2>
+  </a>
+
+  <NavBar lang={lang} />
+
+  <ToggleLanguage lang={lang} />
+
+  <ul>
+    {
+      socials.map((social) => (
+        <li>
+          <a href={social.href} target="_blank">
+            <i class={social.icon} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</header>
+
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 2fr 5fr 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    min-height: 4rem;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+</style>

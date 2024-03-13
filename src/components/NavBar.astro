@@ -8,7 +8,6 @@ interface Route {
   name: TextContent;
 }
 const routes: Route[] = [
-  { pathWithoutLang: "/", name: { en: "Home", es: "Titulo" } },
   { pathWithoutLang: "/about", name: { en: "About", es: "Acerca de" } },
   { pathWithoutLang: "/blog", name: { en: "Blog", es: "Blog" } },
   { pathWithoutLang: "/projects", name: { en: "Projects", es: "Proyectos" } },
@@ -40,14 +39,11 @@ const { lang } = Astro.props;
     color: inherit;
   }
 
-  nav {
-    background: darkgray;
-  }
-
   ul {
     display: flex;
-    gap: 2rem;
+    gap: 5rem;
     list-style: none;
     justify-content: center;
+    align-items: center;
   }
 </style>

@@ -1,6 +1,7 @@
 ---
 import { allowedLanguages } from "@/config/language";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentContainer from "@components/ContentContainer.astro";
 import { translate, type TextContent } from "@lib/internationalization";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
@@ -24,14 +25,16 @@ const projects = await getCollection(
 ---
 
 <BaseLayout lang={lang}>
-  <h1>{translate(title, lang)}</h1>
-  <ul>
-    {
-      projects.map((project) => (
-        <li>
-          <a href={project.data.pathname}>{project.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <ContentContainer>
+    <h1>{translate(title, lang)}</h1>
+    <ul>
+      {
+        projects.map((project) => (
+          <li>
+            <a href={project.data.pathname}>{project.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </ContentContainer>
 </BaseLayout>

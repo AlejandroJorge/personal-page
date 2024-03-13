@@ -1,6 +1,7 @@
 ---
 import { defaultLanguage } from "@/config/language";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentContainer from "@components/ContentContainer.astro";
 import { translate, type TextContent } from "@lib/internationalization";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -15,5 +16,7 @@ const lang = defaultLanguage;
 ---
 
 <BaseLayout lang={lang}>
-  <h1>{translate(title, lang)}</h1>
+  <ContentContainer>
+    <h1>{translate(title, lang)}</h1>
+  </ContentContainer>
 </BaseLayout>

@@ -1,6 +1,7 @@
 ---
 import { allowedLanguages } from "@/config/language";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentContainer from "@components/ContentContainer.astro";
 import { translate, type TextContent } from "@lib/internationalization";
 import type { GetStaticPaths } from "astro";
 export const getStaticPaths = (() => {
@@ -18,5 +19,7 @@ const { lang } = Astro.params;
 ---
 
 <BaseLayout lang={lang}>
-  <h1>{translate(missingContentMessage, lang)}</h1>
+  <ContentContainer>
+    <h1>{translate(missingContentMessage, lang)}</h1>
+  </ContentContainer>
 </BaseLayout>

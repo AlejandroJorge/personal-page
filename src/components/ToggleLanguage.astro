@@ -1,18 +1,64 @@
 ---
-import { allowedLanguages } from "@/config/language";
+import { AllowedLanguage, allowedLanguages } from "@/config/language";
 import { removeFirstPathSegment } from "@lib/pathing";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const currentPathWithoutLang = removeFirstPathSegment(Astro.url.pathname);
+
+interface Props {
+  lang: AllowedLanguage;
+}
+const { lang: currentLang } = Astro.props;
 ---
 
-<p>Current path: {currentPathWithoutLang}</p>
 <ul>
   {
     allowedLanguages.map((lang) => (
-      <li>
+      <li class={currentLang === lang ? "selected" : ""}>
         <a href={getRelativeLocaleUrl(lang, currentPathWithoutLang)}>{lang}</a>
       </li>
     ))
   }
 </ul>
+
+<style>
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+
+  li {
+    border-left: 0.15rem solid #000;
+    border-top: 0.15rem solid #000;
+    border-bottom: 0.15rem solid #000;
+    text-align: center;
+    min-width: 3.5rem;
+    min-height: 2.5rem;
+  }
+
+  li:first-of-type {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+
+  li:last-of-type {
+    border-right: 0.15rem solid #000;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+
+  .selected {
+    background-color: darkred;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+</style>

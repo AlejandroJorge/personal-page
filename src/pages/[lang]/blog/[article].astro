@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentContainer from "@components/ContentContainer.astro";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 export const getStaticPaths = (async () => {
@@ -17,7 +18,9 @@ const { Content } = await article.render();
 ---
 
 <BaseLayout lang={lang}>
-  <h1>{title}</h1>
-  <h2>{description} | {date}</h2>
-  <Content />
+  <ContentContainer>
+    <h1>{title}</h1>
+    <h2>{description} | {date}</h2>
+    <Content />
+  </ContentContainer>
 </BaseLayout>
