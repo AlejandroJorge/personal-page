@@ -7,7 +7,7 @@ This is a personal page for showcasing my work and projects. It is built using [
 1. Clone the repository
 
 ```bash
-git clone xxxx
+git clone https://github.com/AlejandroJorge/personal-page.git
 cd personal-page
 ```
 
