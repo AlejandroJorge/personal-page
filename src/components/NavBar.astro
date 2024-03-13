@@ -1,5 +1,5 @@
 ---
-import type { AllowedLanguage } from "@/config";
+import type { AllowedLanguage } from "@/config/language";
 import { translate, type TextContent } from "@lib/internationalization";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
@@ -33,3 +33,21 @@ const { lang } = Astro.props;
     }
   </ul>
 </nav>
+
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  nav {
+    background: darkgray;
+  }
+
+  ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    justify-content: center;
+  }
+</style>

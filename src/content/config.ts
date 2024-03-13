@@ -1,4 +1,4 @@
-import { allowedLanguages } from "@/config";
+import { allowedLanguages } from "@/config/language";
 import { defineCollection, z } from "astro:content";
 
 const blogCollection = defineCollection({

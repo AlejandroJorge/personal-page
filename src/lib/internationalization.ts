@@ -1,4 +1,4 @@
-import type { AllowedLanguage } from "@/config";
+import type { AllowedLanguage } from "@/config/language";
 
 // This isn't synchronized with config.ts, be cautious
 export interface TextContent {

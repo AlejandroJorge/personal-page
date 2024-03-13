@@ -1,11 +1,10 @@
 import { defineConfig } from "astro/config";
-import { allowedLanguages, defaultLanguage } from "./src/config";
 
 // https://astro.build/config
 export default defineConfig({
   i18n: {
-    locales: allowedLanguages,
-    defaultLocale: defaultLanguage,
+    locales: ["en", "es"],
+    defaultLocale: "en",
     routing: {
       prefixDefaultLocale: true,
       redirectToDefaultLocale: true,
