@@ -1,8 +1,14 @@
-export type AllowedLanguage = "en" | "es";
+export enum AllowedLanguage {
+  EN = "en",
+  ES = "es",
+}
 
 export const allowedLanguages: readonly [
   AllowedLanguage,
   ...AllowedLanguage[],
-] = ["en", "es"] as const;
+] = Object.values(AllowedLanguage) as any as readonly [
+  AllowedLanguage,
+  ...AllowedLanguage[],
+];
 
-export const defaultLanguage: AllowedLanguage = "en";
+export const defaultLanguage: AllowedLanguage = AllowedLanguage.EN;
