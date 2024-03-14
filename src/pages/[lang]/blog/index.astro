@@ -5,7 +5,7 @@ import ContentContainer from "@components/ContentContainer.astro";
 import { translate, type TextContent } from "@lib/internationalization";
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import { defaultLightningMode } from "@/config/theme";
+
 export const getStaticPaths = (() => {
   return allowedLanguages.map((lang) => ({
     params: { lang },
@@ -23,12 +23,10 @@ const articles = await getCollection(
   "blog",
   (article) => article.data.lang === lang,
 );
-
-const mode = defaultLightningMode;
 ---
 
-<BaseLayout lang={lang} mode={mode}>
-  <ContentContainer lang={lang} mode={mode}>
+<BaseLayout lang={lang}>
+  <ContentContainer lang={lang}>
     <h1>{translate(title, lang)}</h1>
     <ul>
       {

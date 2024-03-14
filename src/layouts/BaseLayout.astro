@@ -1,14 +1,13 @@
 ---
 import type { AllowedLanguage } from "@/config/language";
-import { getCSSVars, type LightningMode } from "@/config/theme";
+import { getCSSVars } from "@/config/theme";
 import Header from "@components/Header.astro";
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   lang: AllowedLanguage;
-  mode: LightningMode;
 }
-const { lang, mode } = Astro.props;
+const { lang } = Astro.props;
 ---
 
 <html lang={lang}>
@@ -21,9 +20,9 @@ const { lang, mode } = Astro.props;
     <title>Jorge Alejandro</title>
   </head>
   <body>
-    <Header lang={lang} mode={mode} transition:persist />
+    <Header lang={lang} transition:persist />
     <slot />
-    <style is:global define:vars={getCSSVars(mode)}>
+    <style is:global define:vars={getCSSVars()}>
       body {
         font-family:
           system-ui,

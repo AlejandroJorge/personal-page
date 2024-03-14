@@ -4,7 +4,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import ContentContainer from "@components/ContentContainer.astro";
 import { translate, type TextContent } from "@lib/internationalization";
 import type { GetStaticPaths } from "astro";
-import { defaultLightningMode } from "@/config/theme";
+
 export const getStaticPaths = (() => {
   return allowedLanguages.map((lang) => ({
     params: { lang },
@@ -17,11 +17,10 @@ const title: TextContent = {
 };
 
 const { lang } = Astro.params;
-const mode = defaultLightningMode;
 ---
 
-<BaseLayout lang={lang} mode={mode}>
-  <ContentContainer lang={lang} mode={mode}>
+<BaseLayout lang={lang}>
+  <ContentContainer lang={lang}>
     <h1>{translate(title, lang)}</h1>
   </ContentContainer>
 </BaseLayout>
