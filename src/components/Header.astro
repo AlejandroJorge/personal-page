@@ -3,24 +3,13 @@ import type { AllowedLanguage } from "@/config/language";
 import { getCSSVars } from "@/config/theme";
 import NavBar from "@components/NavBar.astro";
 import ToggleLanguage from "@components/ToggleLanguage.astro";
+import ContactIcons from "@components/ContactIcons.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import "primeicons/primeicons.css";
 
 interface Props {
   lang: AllowedLanguage;
 }
 const { lang } = Astro.props;
-
-const socials: { icon: string; href: string }[] = [
-  {
-    icon: "pi pi-github",
-    href: "https://github.com/AlejandroJorge",
-  },
-  {
-    icon: "pi pi-linkedin",
-    href: "https://www.linkedin.com/in/jorgealejandroc/",
-  },
-];
 ---
 
 <header>
@@ -32,17 +21,7 @@ const socials: { icon: string; href: string }[] = [
 
   <ToggleLanguage lang={lang} />
 
-  <ul>
-    {
-      socials.map((social) => (
-        <li>
-          <a href={social.href} target="_blank">
-            <i class={social.icon} />
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <ContactIcons />
 </header>
 
 <style define:vars={getCSSVars()}>
@@ -66,23 +45,5 @@ const socials: { icon: string; href: string }[] = [
     margin-right: 0.75rem;
     min-height: 5rem;
     border-bottom: 0.25rem solid var(--primaryColor);
-  }
-
-  ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    justify-content: right;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-  }
-
-  i {
-    color: var(--textColor);
-    font-size: 1.5rem;
-    margin-top: 0.1rem;
   }
 </style>

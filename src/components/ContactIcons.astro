@@ -1,0 +1,55 @@
+---
+import { githubProfileLink, linkedinProfileLink } from "@/config/info";
+import { getCSSVars } from "@/config/theme";
+import "primeicons/primeicons.css";
+
+const socials: { icon: string; href: string; ariaLabel: string }[] = [
+  {
+    icon: "pi pi-github",
+    href: githubProfileLink,
+    ariaLabel: "GitHub",
+  },
+  {
+    icon: "pi pi-linkedin",
+    href: linkedinProfileLink,
+    ariaLabel: "LinkedIn",
+  },
+];
+---
+
+<ul>
+  {
+    socials.map((social) => (
+      <li>
+        <a href={social.href} aria-label={social.ariaLabel} target="_blank">
+          <i class={social.icon} />
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style define:vars={getCSSVars()}>
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    justify-content: right;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  i {
+    color: var(--textColor);
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--textColor);
+  }
+</style>
