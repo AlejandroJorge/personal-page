@@ -3,15 +3,29 @@ import type { AllowedLanguage } from "@/config/language";
 import { getCSSVars } from "@/config/theme";
 import { translate, type TextContent } from "@lib/internationalization";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import "primeicons/primeicons.css";
 
 interface Route {
   pathWithoutLang: string;
   name: TextContent;
+  icon: string;
 }
 const routes: Route[] = [
-  { pathWithoutLang: "/about", name: { en: "About", es: "Acerca de" } },
-  { pathWithoutLang: "/blog", name: { en: "Blog", es: "Blog" } },
-  { pathWithoutLang: "/projects", name: { en: "Projects", es: "Proyectos" } },
+  {
+    pathWithoutLang: "/about",
+    name: { en: "About", es: "Acerca de" },
+    icon: "pi pi-user",
+  },
+  {
+    pathWithoutLang: "/blog",
+    name: { en: "Blog", es: "Blog" },
+    icon: "pi pi-comments",
+  },
+  {
+    pathWithoutLang: "/projects",
+    name: { en: "Projects", es: "Proyectos" },
+    icon: "pi pi-code",
+  },
 ];
 
 interface Props {
@@ -26,6 +40,7 @@ const { lang } = Astro.props;
       routes.map((route) => (
         <li>
           <a href={getRelativeLocaleUrl(lang, route.pathWithoutLang)}>
+            <i class={route.icon} />
             {translate(route.name, lang)}
           </a>
         </li>
@@ -73,5 +88,9 @@ const { lang } = Astro.props;
 
   li {
     text-align: center;
+  }
+
+  i {
+    margin-right: 0.5rem;
   }
 </style>
